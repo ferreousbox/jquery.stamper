@@ -20,7 +20,10 @@
 		$(".stamper span").stamper({
 			image : "images/stamper.png",
 			scale : 3,
-			speed : 300
+			speed : 300,
+			complete : function() {
+				alert("完成啦~~~~");
+			}
 		});
 	}
 	</script>
@@ -56,6 +59,7 @@
 				<li>image：章的图片路径，必须指定</li>
 				<li>scale：章图片的放大倍数，默认是5。需要小心设置过大可能会超出屏幕大小太多导致等待较长时间才会显示</li>
 				<li>speed：效果速度值，默认是600（单位毫秒）。通常与scale配合一起决定整个效果的时间</li>
+				<li>complete：盖章完成后的回调方法，该方法无参数，可选</li>
 			</ul>
 		</div>
 		<div class="stamper">

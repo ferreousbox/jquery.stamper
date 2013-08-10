@@ -2,7 +2,7 @@
  * Title：在网页上模拟现实中的盖章效果的JQuery插件
  * Author：铁木箱子
  * Email：biqiang.ma@gmail.com
- * Version：0.1
+ * Version：0.1.1
  * 
  */
 (function($) {
@@ -35,9 +35,9 @@
 					top : orgiCoor.y + "px",
 					width : orgiCoor.w + "px",
 					height : orgiCoor.h + "px"
-				}, opts.speed);
+				}, opts.speed, opts.complete);
 		};
-	}
+	};
 	
 	/** 获取img的DOM对象 **/
 	function getImageElement(id) {
