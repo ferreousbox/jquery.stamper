@@ -2,41 +2,47 @@
  * Title：在网页上模拟现实中的盖章效果的JQuery插件
  * Author：铁木箱子
  * Email：biqiang.ma@gmail.com
- * Version：0.1.1
+ * Version：0.2
  * 
  */
 (function($) {
 	$.fn.stamper = function(options) {
 		var opts = $.extend({
-			id : "jquery_stamper_img", // img对象（自动生成）的id
 			scale : 5, // 图片初始大小，在原始图片大小上的倍数
 			speed : 600 // 动画持续时间，单位毫秒
 		}, options);
 		
-		var target = this;
-		var img = new Image();
-		img.src = opts.image;
-		img.onload = function() {
-			var orgiCoor = getImageCoordinate(target, img);
-			var initCoor = getStartCoordinate(target, img, opts.scale);
-			var imgObj = getImageElement(opts.id).attr("src", img.src)
-				.css({
-					position : "absolute",
-					opacity : "0",
-					left : initCoor.x + "px",
-					top : initCoor.y + "px",
-					width : initCoor.w + "px",
-					height : initCoor.h + "px"
-				})
-				.show()
-				.animate({
-					opacity : "1",
-					left : orgiCoor.x + "px",
-					top : orgiCoor.y + "px",
-					width : orgiCoor.w + "px",
-					height : orgiCoor.h + "px"
-				}, opts.speed, opts.complete);
-		};
+		this.each(function(index) {
+			var target = $(this);
+			var imgId = target.attr("data-stamper-img-id");
+			if (!imgId) {
+				imgId = "jquery_stamper_img_" + (new Date().getTime()) + "_" + index;
+				target.attr("data-stamper-img-id", imgId);
+			}
+			var img = new Image();
+			img.src = opts.image;
+			img.onload = function() {
+				var orgiCoor = getImageCoordinate(target, img);
+				var initCoor = getStartCoordinate(target, img, opts.scale);
+				var imgObj = getImageElement(imgId).attr("src", img.src)
+					.css({
+						position : "absolute",
+						opacity : "0",
+						left : initCoor.x + "px",
+						top : initCoor.y + "px",
+						width : initCoor.w + "px",
+						height : initCoor.h + "px"
+					})
+					.show()
+					.animate({
+						opacity : "1",
+						left : orgiCoor.x + "px",
+						top : orgiCoor.y + "px",
+						width : orgiCoor.w + "px",
+						height : orgiCoor.h + "px"
+					}, opts.speed, opts.complete);
+			};
+		});
 	};
 	
 	/** 获取img的DOM对象 **/

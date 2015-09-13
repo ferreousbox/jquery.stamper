@@ -16,8 +16,8 @@
 	.stamper span{float:right;display:inline-block;height:100%;width:200px;}
 	</style>
 	<script>
-	function demo_stamp() {
-		$(".stamper span").stamper({
+	function demo_stamp(type) {
+		$(".stamper span.t" + type).stamper({
 			image : "images/stamper.png",
 			scale : 3,
 			speed : 300,
@@ -52,7 +52,7 @@
 				});
 			</pre>
 			
-			<h4>3、参数</h4>
+			<h4 class="dd">3、参数</h4>
 			<p>jquery.stamper可配置的参数如下：</p>
 			<ul>
 				<li>id：img对象的id，指定不同的id则会生成不同的img对象，默认是jquery_stamper_img</li>
@@ -63,8 +63,13 @@
 			</ul>
 		</div>
 		<div class="stamper">
-			<button onclick="demo_stamp()">点击我盖章</button>
-			<span>（盖章）</span>
+			<button onclick="demo_stamp(1)">点击我盖章（单个）</button>
+			<span class="t1">（盖章）</span>
+		</div>
+		<div class="stamper">
+			<button onclick="demo_stamp(2)">点击我盖章（多个）</button>
+			<span class="t2">（盖章1）</span>
+			<span class="t2">（盖章2）</span>
 		</div>
 	</div>
 	<br/><br/><br/><br/><br/>
